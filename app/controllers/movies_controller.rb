@@ -12,20 +12,19 @@ class MoviesController < ApplicationController
     end
   end
 
-
   def update
     @movie = Movie.find(params[:id])
     @movie.update(movie_params)
 
     respond_to do |format|
       format.html { redirect_to movies_path }
-      format.text { render partial: "movie_infos", locals: { movie: @movie }, formats: [:html] }
+      format.text { render partial: "movies/movie_infos", locals: { movie: @movie }, formats: [:html] }
     end
   end
 
   private
 
   def movie_params
-    params.require(:movie).permit(:title, :date)
+    params.require(:movie).permit(:title, :year)
   end
 end
